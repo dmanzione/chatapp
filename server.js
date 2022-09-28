@@ -10,7 +10,7 @@ http = http.Server(app);
 
 //get socket.io module and tell it to put our socket at the http server's endpoint
 //took me a while to figure this out but all you have to do is extend the http
-//server to allow your server socket to listen for messages on it
+//server to allow your server socket to listen for events on it
 const io = require('socket.io')(http); 
 
 
@@ -26,6 +26,8 @@ app.get('/', (req, res) => {
 //socket.io handler for when a client makes a connection 
 io.on('connection', (socket) => {
   
+ 
+ io.emit('broadcast',"client has joined the room");//this emits message to anyone connected 
   //you add handlers for messages and errors inside this one
   socket.on('message', msg => {
     io.emit('message', msg);

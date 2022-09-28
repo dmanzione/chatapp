@@ -11,7 +11,7 @@ http = http.Server(app);
 //get socket.io module and tell it to put our socket at the http server's endpoint
 //took me a while to figure this out but all you have to do is extend the http
 //server to allow your server socket to listen for events on it
-const io = require('socket.io', { autoConnect: false })(http);
+const io = require('socket.io')(http);
 
 
 const port = process.env.PORT || 3000;
